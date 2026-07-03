@@ -9,6 +9,7 @@ import { useAuth } from '../context/AuthContext';
 import { supabase } from '@/lib/supabaseClient';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { API_URL } from '@/lib/api';
 
 export default function AboutMe() {
   const { user } = useAuth();
@@ -98,7 +99,7 @@ export default function AboutMe() {
     onSuccess: async (codeResponse) => {
       setIsGoogleSyncing(true);
       try {
-        const res = await fetch('http://localhost:5001/api/google/auth', {
+        const res = await fetch(`${API_URL}/api/google/auth`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ code: codeResponse.code, userId: user.id })
@@ -123,7 +124,7 @@ export default function AboutMe() {
   const handleDisconnectGoogle = async () => {
     setIsGoogleSyncing(true);
     try {
-      const res = await fetch('http://localhost:5001/api/google/disconnect', {
+      const res = await fetch(`${API_URL}/api/google/disconnect`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId: user.id })

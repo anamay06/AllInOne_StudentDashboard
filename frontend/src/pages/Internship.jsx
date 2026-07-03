@@ -5,6 +5,7 @@ import { supabase } from '../lib/supabaseClient';
 import { useAuth } from '../context/AuthContext';
 import { ScrollArea } from '../components/ui/scroll-area';
 import axios from 'axios';
+import { API_URL } from '../lib/api';
 
 // Dynamic Subcomponent for Company Logos using Direct Domain Prediction + Clearbit
 const CompanyLogo = ({ companyName }) => {
@@ -119,7 +120,7 @@ export default function Internship() {
     setLoadingMore(false); // Reset in case a previous loadMore was flying
     setPage(1); // Reset page on new filter
     try {
-      const response = await axios.get(`http://localhost:5001/api/internships?domain=${domainFilter}&page=1`);
+      const response = await axios.get(`${API_URL}/api/internships?domain=${domainFilter}&page=1`);
       setOpportunities(response.data || []);
     } catch (error) {
       console.error("Failed to fetch initial internships:", error);
@@ -135,7 +136,7 @@ export default function Internship() {
     const nextPage = page + 1;
     
     try {
-      const response = await axios.get(`http://localhost:5001/api/internships?domain=${domainFilter}&page=${nextPage}`);
+      const response = await axios.get(`${API_URL}/api/internships?domain=${domainFilter}&page=${nextPage}`);
       if (response.data && response.data.length > 0) {
         setOpportunities(prev => [...prev, ...response.data]);
         setPage(nextPage);

@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { format, isToday, isTomorrow, parseISO, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays, addMonths, subMonths, isSameMonth, isSameDay } from 'date-fns';
 import { supabase } from '@/lib/supabaseClient';
 import { useAuth } from '@/context/AuthContext';
+import { API_URL } from '@/lib/api';
 
 // Wrapping Card with Framer Motion for brutalist click animations
 const MotionCard = motion(Card);
@@ -439,7 +440,7 @@ export default function Home() {
     const fetchLinkedCalendar = async () => {
       if (!user) return;
       try {
-        const res = await fetch(`http://localhost:5001/api/google/token?userId=${user.id}`);
+        const res = await fetch(`${API_URL}/api/google/token?userId=${user.id}`);
         const data = await res.json();
         if (data.access_token) {
           setCalendarAccessToken(data.access_token);
@@ -576,7 +577,7 @@ export default function Home() {
   const loadContests = async () => {
     setIsContestsLoading(true);
     try {
-      const res = await fetch('http://localhost:5001/api/contests');
+      const res = await fetch(`${API_URL}/api/contests`);
       const data = await res.json();
       setContests(Array.isArray(data) ? data : []);
     } catch (err) {
