@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Datatype&family=Iosevka+Charon+Mono:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 211 100% 95%; /* #E4F1FF */
+    --foreground: 265 100% 18%; /* #27005D */
+    
+    --card: 0 0% 100%;
+    --card-foreground: 265 100% 18%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 265 100% 18%;
+    
+    --primary: 265 100% 18%; /* #27005D */
+    --primary-foreground: 211 100% 95%; /* #E4F1FF */
+    
+    --secondary: 275 100% 50%; /* #9400FF */
+    --secondary-foreground: 211 100% 95%; /* #E4F1FF */
+    
+    --muted: 213 100% 84%; /* #AED2FF */
+    --muted-foreground: 265 100% 40%;
+    
+    --accent: 213 100% 84%; /* #AED2FF */
+    --accent-foreground: 265 100% 18%;
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 265 100% 18%; /* #27005D */
+    --input: 265 100% 18%; 
+    --ring: 275 100% 50%; /* #9400FF */
+    
+    --radius: 2rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground selection:bg-secondary selection:text-white;
+    font-family: 'Iosevka Charon Mono', monospace;
+  }
+}
+
+.font-handwriting {
+  font-family: 'Datatype', sans-serif;
+  font-size: 2.5rem;
+}
+
+@keyframes borderGlow {
+  0%, 100% { 
+    border-color: #27005D;
+    box-shadow: 0 0 10px rgba(39, 0, 93, 0.2), inset 0 0 5px rgba(39, 0, 93, 0.1);
+  }
+  50% { 
+    border-color: #9400FF;
+    box-shadow: 0 0 25px rgba(148, 0, 255, 0.5), inset 0 0 15px rgba(148, 0, 255, 0.2);
+  }
+}
+
+.animate-glow-border {
+  animation: borderGlow 3s ease-in-out infinite;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Modern Custom Scrollbar */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 0, 255, 0.3) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 100px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(148, 0, 255, 0.25);
+  border-radius: 100px;
+  transition: background 0.3s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 0, 255, 0.5);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:active {
+  background: rgba(148, 0, 255, 0.7);
+}
